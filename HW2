@@ -1,0 +1,91 @@
+Sub HW2()
+
+'Set variables to hold ticker name & totalStockVolume
+Dim tickerName As String
+Dim tickerTotalVolume As Double
+tickerTotalVolume = 0
+
+For Each ws In Worksheets
+
+'Set Headers
+ws.Range("I1").Value = "Ticker"
+ws.Range("J1").Value = "Total Stock Volume"
+
+'Counter for print statement
+Dim Summary_Table_Row As Double
+Summary_Table_Row = 2
+
+'Find last row in current worksheet
+Dim lastRow As Double
+lastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+'loop through all tickers
+For i = 2 To lastRow
+If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
+
+'Set tickerName
+tickerName = ws.Cells(i, 1).Value
+
+'Add the volume Total
+tickerTotalVolume = tickerTotalVolume + ws.Cells(i, 7).Value
+
+'Print the ticker name in the Summary Table
+ws.Range("J" & Summary_Table_Row).Value = tickerName
+
+'Print the volume Amount to the Summary Table
+ws.Range("J" & Summary_Table_Row).Value = tickerTotalVolume
+
+'Add one to the summary table row
+Summary_Table_Row = Summary_Table_Row + 1
+
+'Counter for print statement
+Dim Summary_Table_Row As Double
+Summary_Table_Row = 2
+
+'Find Last Row in current worksheet
+Dim lastRow As Double
+lastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+'loop through all tickers
+For i = 2 To lastRow
+If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
+
+'Set tickerName
+tickerName = ws.Cells(i, 1).Value
+
+'Add to the volume Total
+tickerTotalVolume = tickeTotalVolume + ws.Cells(i, 7).Value
+
+'Print the ticker name in the Summary Table
+ws.Range("I" & Summary_Table_Row).Value = tickerName
+
+'Print the volume Amount to the Summary Table
+ws.Range("J" & Summary_Table_Row).Value = tickerTotalVolume
+
+'Add one to the summary table row
+Summary_Table_Row = Summary_Table_Row + 1
+
+'Reset the Brand total
+tickerTotalVolume = 0
+
+'If the cell immediately following a row is the same ticker...
+Else
+
+'Add to the Brand Total
+tickerTotalVolume = tickerTotalVolume + ws.Cells(i, 7).Value
+
+End If
+Next i
+Next ws
+
+
+
+
+
+
+
+
+
+
+
+End Sub
